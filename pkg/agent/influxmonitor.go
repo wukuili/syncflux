@@ -52,6 +52,7 @@ func (im *InfluxMonitor) InitPing() (client.Client, time.Duration, string, error
 		Username: im.cfg.AdminUser,
 		Password: im.cfg.AdminPasswd,
 		Timeout:  im.cfg.Timeout,
+		InsecureSkipVerify: im.cfg.InsecureSkipVerify,
 	}
 
 	con, err2 := client.NewHTTPClient(info)
