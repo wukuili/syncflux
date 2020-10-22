@@ -24,25 +24,25 @@ jobs:
       uses: actions/checkout@v2
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/wukuili/syncflux.git $GOPATH/src/github.com/toni-moreno/syncflux
+        git clone --depth=1 https://github.com/wukuili/syncflux.git /home/runner/go/src/github.com/toni-moreno/syncflux
     - name: Get dependencies
       run: |
-        cd $GOPATH/src/github.com/toni-moreno/syncflux
+        cd /home/runner/go/src/github.com/toni-moreno/syncflux
         go get -v -t -d ./...
         if [ -f Gopkg.toml ]; then
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
     - name: Building the backend
-      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go build
-    - name: Creating minimal package tar.gz
-      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go pkg-min-tar   
-    - name: Creating rpm and deb packages
-      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go latest
+      run:  |
+        cd /home/runner/go/src/github.com/toni-moreno/syncflux 
+        go run build.go build
+        go run build.go pkg-min-tar
+        go run build.go latest
 
     - name: Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: Padavan-packages
-        path: $GOPATH/src/github.com/toni-moreno/syncflux/dist
+        path: /home/runner/go/src/github.com/toni-moreno/syncflux/dist
