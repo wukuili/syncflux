@@ -44,5 +44,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages
-        path: /home/runner/go/src/github.com/toni-moreno/syncflux/dist
+        name: syncflux
+        path: /home/runner/go/src
