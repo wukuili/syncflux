@@ -34,11 +34,11 @@ jobs:
             dep ensure
         fi
     - name: Building the backend
-      run: $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go build
+      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go build
     - name: Creating minimal package tar.gz
-      run: $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go pkg-min-tar   
+      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go pkg-min-tar   
     - name: Creating rpm and deb packages
-      run: $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go latest
+      run: cd $GOPATH/src/github.com/toni-moreno/syncflux && go run build.go latest
 
     - name: Upload packages
       uses: actions/upload-artifact@master
