@@ -49,7 +49,8 @@ type InfluxDB struct {
 	Location    string        `mapstructure:"location"`
 	AdminUser   string        `mapstructure:"admin-user"`
 	AdminPasswd string        `mapstructure:"admin-passwd"`
-	Timeout     time.Duration `mapstructure:"timeout"`
+	Timeout     time.Duration `mapstructure:"timeout"`,
+	InsecureSkipVerify bool   `mapstructure:"InsecureSkipVerify"`
 }
 
 //Config Main Configuration struct
